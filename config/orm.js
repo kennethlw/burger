@@ -1,8 +1,8 @@
-var connection = require("./connection.js");
+const connection = require("./connection.js");
 
 // Object Relational Mapper (ORM)
 
-var orm = {
+const orm = {
   selectAll: function(table, cb) {
     var queryString = "SELECT * FROM burgers";
     connection.query(queryString, function(err, result) {
@@ -12,13 +12,17 @@ var orm = {
       cb(result);
     });
   },
-  insertOne: function(table, colName, colEaten, burgerName, burgerEaten) {
-    var queryString = "INSERT into ?? (?, ?) VALUES (?, ?)";
-    console.log(queryString);
-    connection.query(queryString, [whatToSelect, table, orderCol], function(err, result) {
-      console.log(result);
+  insertOne: function(table,col, vals, cb) {
+    var queryString = "INSERT INTO burgers (burger_name) VALUES (?)";
+    
+    connection.query(queryString, [vals], function(err, result) {
+      if (err) {
+        throw err;
+      }
+      cb(result);
     });
   },
+
   updateOne: function(cb) {
     var queryString = "SELECT * FROM burgers";
 
