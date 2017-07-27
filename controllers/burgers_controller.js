@@ -26,12 +26,10 @@ router.post('/create', function(req, res) {
 });
 
 router.put("/:id", function(req, res) {
-  var condition = 'id = ' + req.params.id;
+  var condition = req.params.id;
 
-  console.log("condition", condition);
-
-  burger.update({
-    'devoured': req.body.devoured}, condition, function(data) {
+  console.log(condition);
+  burger.update({'devoured': req.body.devoured}, condition, function(data) {
     res.redirect('/index');
   });
 });
