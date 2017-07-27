@@ -25,6 +25,7 @@ router.post('/create', function(req, res) {
   });
 });
 
+//route to get the id of burger to change to devoured
 router.put("/:id", function(req, res) {
   var condition = req.params.id;
 
